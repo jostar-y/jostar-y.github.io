@@ -1517,7 +1517,6 @@ pre code {
   line-height: 1.8;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .post-toc .nav .nav-child {
   display: none;
@@ -2607,7 +2606,7 @@ ul.breadcrumb li:last-child {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #3b2dee;
+  background: #a4a499;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
