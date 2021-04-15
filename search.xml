@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>todo</title>
-    <url>/2021/04/15/todo/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Todo…</p>
-<span id="more"></span>
-
-<h4 id="Erlang"><a href="#Erlang" class="headerlink" title="Erlang"></a>Erlang</h4><p>gc</p>
-<p>rika</p>
-<p>hot_reload</p>
-<p>cluster</p>
-<p>node</p>
-<p>io:user</p>
-<p>binary</p>
-<h4 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h4><h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><p>主从</p>
-<h4 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h4><p>tcp</p>
-<p>udp</p>
-<p>http</p>
-<p>mqtt</p>
-<p>coap</p>
-]]></content>
-  </entry>
-  <entry>
     <title>lager</title>
     <url>/2021/04/15/lager/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="1、基本配置"><a href="#1、基本配置" class="headerlink" title="1、基本配置"></a>1、基本配置</h4><p>rebar.config</p>
@@ -91,6 +70,27 @@
         <tag>erlang</tag>
         <tag>log</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>todo</title>
+    <url>/2021/04/15/todo/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Todo…</p>
+<span id="more"></span>
+
+<h4 id="Erlang"><a href="#Erlang" class="headerlink" title="Erlang"></a>Erlang</h4><p>gc</p>
+<p>rika</p>
+<p>hot_reload</p>
+<p>cluster</p>
+<p>node</p>
+<p>io:user</p>
+<p>binary</p>
+<h4 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h4><h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><p>主从</p>
+<h4 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h4><p>tcp</p>
+<p>udp</p>
+<p>http</p>
+<p>mqtt</p>
+<p>coap</p>
+]]></content>
   </entry>
   <entry>
     <title>那些歌</title>
