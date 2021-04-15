@@ -22,6 +22,11 @@
 ]]></content>
   </entry>
   <entry>
+    <title>rebar</title>
+    <url>/2021/04/15/rebar/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
+  </entry>
+  <entry>
     <title>lager</title>
     <url>/2021/04/15/lager/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="1、基本配置"><a href="#1、基本配置" class="headerlink" title="1、基本配置"></a>1、基本配置</h4><p>rebar.config</p>
