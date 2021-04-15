@@ -22,18 +22,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>那些歌</title>
-    <url>/2021/04/15/%E9%82%A3%E4%BA%9B%E6%AD%8C/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h5 id="x1f442-网易云"><a href="#x1f442-网易云" class="headerlink" title="👂网易云"></a><span class="github-emoji" alias="ear" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f442.png?v8">👂</span>网易云</h5>
-    <div id="aplayer-tMGgaoia" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="6647556685" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
-
-
-]]></content>
-      <tags>
-        <tag>essay</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>lager</title>
     <url>/2021/04/15/lager/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="1、基本配置"><a href="#1、基本配置" class="headerlink" title="1、基本配置"></a>1、基本配置</h4><p>rebar.config</p>
@@ -102,6 +90,18 @@
       <tags>
         <tag>erlang</tag>
         <tag>log</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>那些歌</title>
+    <url>/2021/04/15/%E9%82%A3%E4%BA%9B%E6%AD%8C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h5 id="x1f442-网易云"><a href="#x1f442-网易云" class="headerlink" title="👂网易云"></a><span class="github-emoji" alias="ear" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f442.png?v8">👂</span>网易云</h5>
+    <div id="aplayer-VbRlPryb" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="6647556685" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
+
+
+]]></content>
+      <tags>
+        <tag>essay</tag>
       </tags>
   </entry>
 </search>
