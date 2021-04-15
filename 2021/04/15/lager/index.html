@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;example.com&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Mist&quot;,&quot;version&quot;:&quot;8.3.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script>
+<meta name="description" content="1、基本配置rebar.config 1234567891011{erl_opts,[    ...    {parse_transform, lager_transform},         {lager_truncation_size, 1024},          % 限制单条日志最大尺寸    {lager_extra_sinks, [msg]},             % 扩展日志">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lager">
+<meta property="og:url" content="http://example.com/2021/04/15/lager/index.html">
+<meta property="og:site_name" content="心向光">
+<meta property="og:description" content="1、基本配置rebar.config 1234567891011{erl_opts,[    ...    {parse_transform, lager_transform},         {lager_truncation_size, 1024},          % 限制单条日志最大尺寸    {lager_extra_sinks, [msg]},             % 扩展日志">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-15T03:13:54.000Z">
+<meta property="article:modified_time" content="2021-04-15T06:42:17.770Z">
+<meta property="article:author" content="Jostar">
+<meta property="article:tag" content="erlang">
+<meta property="article:tag" content="log">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/04/15/lager/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;example.com&#x2F;2021&#x2F;04&#x2F;15&#x2F;lager&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;04&#x2F;15&#x2F;lager&#x2F;&quot;,&quot;title&quot;:&quot;lager&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>lager | 心向光</title><script src="/js/config.js"></script>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">心向光</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">1、基本配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81lager%E7%9A%84%E6%97%A5%E5%BF%97%E7%AD%89%E7%BA%A7%E5%88%92%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">2、lager 的日志等级划分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-number">3.</span> <span class="nav-text">3、使用技巧</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Jostar</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/jostar-y" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;jostar-y" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/15/lager/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Jostar">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="心向光">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          lager
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-04-15 11:13:54 / 修改时间：14:42:17" itemprop="dateCreated datePublished" datetime="2021-04-15T11:13:54+08:00">2021-04-15</time>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="1、基本配置"><a href="#1、基本配置" class="headerlink" title="1、基本配置"></a>1、基本配置</h4><p>rebar.config</p>
+<figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">{erl_opts,[</span><br><span class="line">    ...</span><br><span class="line">    {parse_transform, lager_transform},     </span><br><span class="line">    {lager_truncation_size, <span class="number">1024</span>},          <span class="comment">% 限制单条日志最大尺寸</span></span><br><span class="line">    {lager_extra_sinks, [msg]},             <span class="comment">% 扩展日志</span></span><br><span class="line">    ...</span><br><span class="line">]}.</span><br><span class="line"></span><br><span class="line">{deps,[</span><br><span class="line">       {lager, <span class="string">"3.9.1"</span>}</span><br><span class="line">      ]}</span><br></pre></td></tr></tbody></table></figure>
+
+<span id="more"></span>
+
+<p>sys.config</p>
+<figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    {lager_test, []},</span><br><span class="line">    {lager, [</span><br><span class="line"></span><br><span class="line">        {log_root, <span class="string">"./log"</span>},                <span class="comment">% 日志根目录</span></span><br><span class="line"></span><br><span class="line">        {crash_log, <span class="string">"crash.log"</span>},           <span class="comment">% 设置后当系统发生严重崩溃时，会将日志记录在此文件中</span></span><br><span class="line">        {crash_log_msg_size, <span class="number">65536</span>},        <span class="comment">% 崩溃日志的消息大小的限制</span></span><br><span class="line">        {crash_log_size, <span class="number">10485760</span>},         <span class="comment">% 崩溃日志的文件大小限制</span></span><br><span class="line">        {crash_log_data, <span class="string">"$D0"</span>},            <span class="comment">% 崩溃日志的切割时间</span></span><br><span class="line">        {crash_log_count, <span class="number">5</span>},               <span class="comment">% 崩溃日志的切割数量</span></span><br><span class="line"></span><br><span class="line">        {reverse_pretty_stacktrace, true},      <span class="comment">% 翻转堆栈输出顺序</span></span><br><span class="line">        {error_logger_redirect, true},          <span class="comment">% 是否重定向error_logger消息</span></span><br><span class="line">        {error_logger_hwm, <span class="number">50</span>},                 <span class="comment">% error_logger消息的高水位线，超过将被丢弃 如果想要缓存一定数量消息，则开启下面的属性</span></span><br><span class="line">        <span class="comment">% {error_logger_flush_queue, true},       % 开启丢弃消息 默认：true</span></span><br><span class="line">        <span class="comment">% {error_logger_flush_threshold, 1000},   % 当消息超过高水位线时，并且超过此上线时，超过的消息将被丢弃 默认：0</span></span><br><span class="line"></span><br><span class="line">        {async_threshold, <span class="number">20</span>},              <span class="comment">% 当日志消息积累到一定数量时切换到同步模式（反压）设置为undefined禁用    可以单独在sink中定义</span></span><br><span class="line">        {async_threshold_window, <span class="number">5</span>},        <span class="comment">% 档日志消息减少到一定数量时切换到异步模式  比如这里就是20 - 5 = 15 当消息少于15时切回异步  可以单独在sink中定义</span></span><br><span class="line">        <span class="comment">% {flush_queue, true}                 % 功能与 error_logger_flush_queue 一样 可以单独在sink中定义 默认：true</span></span><br><span class="line">        <span class="comment">% {flush_threshold, 1000}             % 功能与 error_logger_flush_threshold 一样 可以单独在sink中定义 默认：0</span></span><br><span class="line"></span><br><span class="line">        {handlers, [</span><br><span class="line">            <span class="comment">%% lager_console_backend 可设置参数</span></span><br><span class="line">            <span class="comment">%% level 日志级别（需要定义）</span></span><br><span class="line">            <span class="comment">%% formatter 格式化模块 默认：lager_default_formatter</span></span><br><span class="line">            <span class="comment">%% formatter_config 日志格式，默认：[time, " ", color, "[", severity,"] ", message]</span></span><br><span class="line">            <span class="comment">%% user_stderr 是否使用stderr 默认：false</span></span><br><span class="line">            <span class="comment">%% group_leader 指定要输出的io_server 默认：false 使用user进程作为io_server</span></span><br><span class="line">            {lager_console_backend, [</span><br><span class="line">                {level, debug},</span><br><span class="line">                {formatter_config, [time, <span class="string">" "</span>, <span class="string">"["</span>, serverity, <span class="string">"]"</span>, module, <span class="string">":"</span>, function, <span class="string">" "</span>, message, <span class="string">"\n"</span>]}</span><br><span class="line">            ]},</span><br><span class="line"></span><br><span class="line">            <span class="comment">%% lager_file_backend 可设置参数</span></span><br><span class="line">            <span class="comment">%% file 日志文件名（需要定义）</span></span><br><span class="line">            <span class="comment">%% level 日志级别 默认：&gt;=info</span></span><br><span class="line">            <span class="comment">%% size 日志文件大小 默认：10MB</span></span><br><span class="line">            <span class="comment">%% date 日志切割时间 默认：$D0 每日0点</span></span><br><span class="line">            <span class="comment">%% count 日志切分数量 默认：5</span></span><br><span class="line">            <span class="comment">%% rotation 日志切割处理模块 默认：lager_rotator_default</span></span><br><span class="line">            <span class="comment">%% formatter 格式化模块 默认：lager_default_formatter</span></span><br><span class="line">            <span class="comment">%% formatter_config 日志格式（需要定义）</span></span><br><span class="line">            <span class="comment">%% sync_on 立即同步日志级别 默认：error</span></span><br><span class="line">            <span class="comment">%% sync_interval 日志写文件间隔 默认：1000毫秒</span></span><br><span class="line">            <span class="comment">%% sync_size 日志写文件大小 默认：64KB</span></span><br><span class="line">            {lager_file_backend, [</span><br><span class="line">                {file, <span class="string">"error.log"</span>},</span><br><span class="line">                {level, '&gt;=error'},</span><br><span class="line">                {formatter_config, [time, <span class="string">" "</span>, <span class="string">"["</span>, serverity, <span class="string">"]"</span>, module, <span class="string">":"</span>, function, <span class="string">" "</span>, message, <span class="string">"\n"</span>]}</span><br><span class="line">            ]},</span><br><span class="line">            {lager_file_backend, [</span><br><span class="line">                {file, <span class="string">"info.log"</span>},</span><br><span class="line">                {level, '&lt;=warning'},</span><br><span class="line">                {formatter_config, [time, <span class="string">" "</span>, <span class="string">"["</span>, serverity, <span class="string">"]"</span>, module, <span class="string">":"</span>, function, <span class="string">" "</span>, message, <span class="string">"\n"</span>]}</span><br><span class="line">            ]}</span><br><span class="line">        ]},</span><br><span class="line"></span><br><span class="line">        <span class="comment">% {killer_hwm, 1000},               % 如果消息高水位线超过此值 则删掉相关接收器进程 默认：undefined</span></span><br><span class="line">        <span class="comment">% {killer_reinstall_after, 5000}    % 达到此时间后重启此接收器进程    默认：5000毫秒</span></span><br><span class="line">        {extra_sinks, [</span><br><span class="line">            {msg_lager_event, [</span><br><span class="line">                {handlers, [</span><br><span class="line">                    {lager_file_backend, [</span><br><span class="line">                        {file, <span class="string">"msg.log"</span>},</span><br><span class="line">                        {level, '=info'},</span><br><span class="line">                        {formatter_config, [time, <span class="string">" "</span>, <span class="string">"["</span>, serverity, <span class="string">"]"</span>, module, <span class="string">":"</span>, function, <span class="string">" "</span>, message, <span class="string">"\n"</span>]}</span><br><span class="line">                    ]}</span><br><span class="line">                ]}</span><br><span class="line">            ]}</span><br><span class="line">        ]}</span><br><span class="line">    ]}</span><br><span class="line">].</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/erlang-lager/lager#custom-formatting">自定义输出样式</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/erlang-lager/lager#internal-log-rotation">日志切分策略</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/erlang-lager/lager#colored-terminal-output">终端彩色输出</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://hex.pm/packages?_utf8=%E2%9C%93&amp;search=lager&amp;sort=recent_downloads">其他 lager 后端</a></p>
+</li>
+</ul>
+<h4 id="2、lager的日志等级划分"><a href="#2、lager的日志等级划分" class="headerlink" title="2、lager的日志等级划分"></a>2、lager 的日志等级划分</h4><p>从低到高分别为：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">debug &lt; info &lt; notice &lt; warning &lt; error &lt; critical &lt; alter &lt; emergency</span><br></pre></td></tr></tbody></table></figure>
+
+<p>lager 支持类似 syslog 形式定义级别，例如：</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">info        % info及更高级别（&gt;=info 隐式）</span><br><span class="line">=debug      % 只有debug级别</span><br><span class="line">!=info      % 除了info级别以外的所有级别</span><br><span class="line">&lt;=notice    % notice及更低级别</span><br><span class="line">&lt;warning    % 任何小于warning的级别</span><br></pre></td></tr></tbody></table></figure>
+
+
+
+<h4 id="3、使用技巧"><a href="#3、使用技巧" class="headerlink" title="3、使用技巧"></a>3、使用技巧</h4><ul>
+<li><p>使用自定义 sink</p>
+  <figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">-define</span><span class="params">(MSG(Args)</span>, msg:info<span class="params">(Args)</span>).</span><br><span class="line"><span class="keyword">-define</span><span class="params">(MSG(Format, Args)</span>, msg:info<span class="params">(Format, Args)</span>).</span><br><span class="line"><span class="keyword">-define</span><span class="params">(MSG(Attr, Format, Args)</span>, msg:info<span class="params">(Attr, Format, Args)</span>).</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">msg</span><span class="params">(Args)</span> -&gt;</span></span><br><span class="line">    ?MSG(Args).</span><br><span class="line"><span class="function"><span class="title">msg</span><span class="params">(Format, Args)</span> -&gt;</span></span><br><span class="line">    ?MSG(Format, Args).</span><br><span class="line"><span class="function"><span class="title">msg</span><span class="params">(Attr, Format, Args)</span> -&gt;</span></span><br><span class="line">    ?MSG(Attr, Format, Args).</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+<li><p>扩展 sink 打印的日志不会显示到 console 中，可以通过一下方法实现</p>
+  <figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% msg_lager_event 为自定义sink</span></span><br><span class="line"><span class="comment">%% 添加handler</span></span><br><span class="line"><span class="number">1</span>&gt; gen_event:add_handler(msg_lager_event, lager_console_backend, [{level, debug}]).    </span><br><span class="line">ok</span><br><span class="line"><span class="comment">%% 删除handler</span></span><br><span class="line"><span class="number">2</span>&gt; gen_event:delete_handler(msg_lager_event, lager_console_backend, [{level, debug}]).</span><br><span class="line">ok</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+<li><p>查看日志级别</p>
+  <figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>&gt; lager:get_loglevel(lager_console_backend).</span><br><span class="line">debug</span><br><span class="line"><span class="number">2</span>&gt; lager:get_loglevel({lager_file_backend,<span class="string">"info.log"</span>}).</span><br><span class="line">debug</span><br><span class="line"><span class="number">3</span>&gt; lager:get_loglevel({lager_file_backend,<span class="string">"error.log"</span>}).</span><br><span class="line">error</span><br><span class="line"><span class="number">4</span>&gt; lager:get_loglevel(msg_lager_event, {lager_file_backend,<span class="string">"msg.log"</span>}).</span><br><span class="line">info</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+<li><p>设置日志级别</p>
+  <figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>&gt; lager:set_loglevel(lager_console_backend,'info'). </span><br><span class="line">ok</span><br><span class="line"><span class="number">2</span>&gt; lager:set_loglevel({lager_file_backend, <span class="string">"info.log"</span>},'debug').                          </span><br><span class="line"><span class="number">15</span>:<span class="number">16</span>:<span class="number">01.552</span> [Undefined]lager_file_backend:Undefined Changed loglevel <span class="keyword">of</span> c:/Users/gz1417/Desktop/lager_test/log/info.log to debug</span><br><span class="line">ok</span><br><span class="line"><span class="number">3</span>&gt; lager:set_loglevel(msg_lager_event, {lager_file_backend, <span class="string">"msg.log"</span>}, undefined, 'info').</span><br><span class="line">ok</span><br><span class="line"><span class="number">15</span>:<span class="number">12</span>:<span class="number">43.449</span> [Undefined]lager_file_backend:Undefined Changed loglevel <span class="keyword">of</span> c:/Users/gz1417/Desktop/lager_test/log/msg.log to info</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+<li><p>trace console</p>
+  <figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>&gt; lager:set_loglevel(lager_console_backend, info).     <span class="comment">% 设置为info及以上级别</span></span><br><span class="line">ok</span><br><span class="line"><span class="number">2</span>&gt; log1:debug(<span class="string">"aaa"</span>).                                   <span class="comment">% debug级别已经无法在console中输出内容</span></span><br><span class="line">ok</span><br><span class="line"><span class="number">3</span>&gt; log1:info(<span class="string">"aaa"</span>).                                    <span class="comment">% info级别可以</span></span><br><span class="line">ok</span><br><span class="line"><span class="number">15</span>:<span class="number">53</span>:<span class="number">20.297</span> [Undefined]log1:info aaa</span><br><span class="line"><span class="number">4</span>&gt; lager:trace_console([{module, log1}]).               <span class="comment">% 设置跟踪log1模块的所有日志</span></span><br><span class="line">{ok,{lager_console_backend,[{module,log1}],debug}}</span><br><span class="line"><span class="number">5</span>&gt; log1:debug(<span class="string">"aaa"</span>).                   </span><br><span class="line">ok</span><br><span class="line"><span class="number">15</span>:<span class="number">51</span>:<span class="number">13.308</span> [Undefined]log1:debug aaa</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+<li><p>trace 自定义 tag</p>
+  <figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>&gt; lager:set_loglevel(lager_console_backend, info).     <span class="comment">% 设置为info及以上级别</span></span><br><span class="line">ok</span><br><span class="line"><span class="number">2</span>&gt; log1:debug([{name, dy}],<span class="string">"~s"</span>,[<span class="string">"s_name"</span>]).  <span class="comment">% debug级别已经无法在console中输出内容</span></span><br><span class="line">ok</span><br><span class="line"><span class="number">3</span>&gt; lager:trace_console([{name, dy}]).</span><br><span class="line">{ok,{lager_console_backend,[{name, dy}], debug}}</span><br><span class="line"><span class="number">4</span>&gt; log1:debug([{name, dy}],<span class="string">"~s"</span>,[<span class="string">"s_name"</span>]).   <span class="comment">% 设置跟踪tag为dy的所有日志</span></span><br><span class="line">ok</span><br><span class="line"><span class="number">16</span>:<span class="number">41</span>:<span class="number">47.715</span> [Undefined]log1:debug s_name</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+<li><p>trace 文件 但输出到文件中的日志并不能打印到 console 需要 gen_event:add_handler 添加 lager_console_backend</p>
+  <figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>&gt; lager:trace_file(<span class="string">"msg.log"</span>, [{sink, msg_lager_event}, {module, log1}]).</span><br><span class="line">{ok,{{lager_file_backend,<span class="string">"c:/Users/gz1417/Desktop/lager_test/log/msg.log"</span>},</span><br><span class="line">     [{sink,msg_lager_event},{module,log1}],</span><br><span class="line">     debug}}</span><br></pre></td></tr></tbody></table></figure>
+
+</li>
+<li><p>演示文件</p>
+</li>
+</ul>
+<figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% log.hrl</span></span><br><span class="line"><span class="keyword">-define</span><span class="params">(DEBUG(Args)</span>, lager:debug<span class="params">(Args)</span>).</span><br><span class="line"><span class="keyword">-define</span><span class="params">(DEBUG(Format, Args)</span>, lager:debug<span class="params">(Format, Args)</span>).</span><br><span class="line"><span class="keyword">-define</span><span class="params">(DEBUG(Attr, Format, Args)</span>, lager:debug<span class="params">(Attr, Format, Args)</span>).</span><br><span class="line"></span><br><span class="line"><span class="keyword">-define</span><span class="params">(INFO(Args)</span>, lager:info<span class="params">(Args)</span>).</span><br><span class="line"><span class="keyword">-define</span><span class="params">(INFO(Format, Args)</span>, lager:info<span class="params">(Format, Args)</span>).</span><br><span class="line"><span class="keyword">-define</span><span class="params">(INFO(Attr, Format, Args)</span>, lager:info<span class="params">(Attr, Format, Args)</span>).</span><br><span class="line"></span><br><span class="line"><span class="keyword">-define</span><span class="params">(MSG(Args)</span>, msg:info<span class="params">(Args)</span>).</span><br><span class="line"><span class="keyword">-define</span><span class="params">(MSG(Format, Args)</span>, msg:info<span class="params">(Format, Args)</span>).</span><br><span class="line"><span class="keyword">-define</span><span class="params">(MSG(Attr, Format, Args)</span>, msg:info<span class="params">(Attr, Format, Args)</span>).</span><br></pre></td></tr></tbody></table></figure>
+
+<figure class="highlight erlang"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% log1.erl</span></span><br><span class="line"><span class="keyword">-module</span><span class="params">(log1)</span>.</span><br><span class="line"></span><br><span class="line"><span class="keyword">-include</span><span class="params">(<span class="string">"log.hrl"</span>)</span>.</span><br><span class="line"></span><br><span class="line"><span class="comment">%% API</span></span><br><span class="line"><span class="keyword">-export</span><span class="params">([</span></span><br><span class="line"><span class="params">    debug/<span class="number">1</span>, debug/<span class="number">2</span>, debug/<span class="number">3</span>,</span></span><br><span class="line"><span class="params">    info/<span class="number">1</span>, info/<span class="number">2</span>, info/<span class="number">3</span>,</span></span><br><span class="line"><span class="params">    msg/<span class="number">1</span>, msg/<span class="number">2</span>, msg/<span class="number">3</span></span></span><br><span class="line"><span class="params">])</span>.</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">debug</span><span class="params">(Args)</span> -&gt;</span></span><br><span class="line">    ?DEBUG(Args).</span><br><span class="line"><span class="function"><span class="title">debug</span><span class="params">(Format, Args)</span> -&gt;</span></span><br><span class="line">    ?DEBUG(Format, Args).</span><br><span class="line"><span class="function"><span class="title">debug</span><span class="params">(Attr, Format, Args)</span> -&gt;</span></span><br><span class="line">    ?DEBUG(Attr, Format, Args).</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">info</span><span class="params">(Args)</span> -&gt;</span></span><br><span class="line">    ?INFO(Args).</span><br><span class="line"><span class="function"><span class="title">info</span><span class="params">(Format, Args)</span> -&gt;</span></span><br><span class="line">    ?INFO(Format, Args).</span><br><span class="line"><span class="function"><span class="title">info</span><span class="params">(Attr, Format, Args)</span> -&gt;</span></span><br><span class="line">    ?INFO(Attr, Format, Args).</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">msg</span><span class="params">(Args)</span> -&gt;</span></span><br><span class="line">    ?MSG(Args).</span><br><span class="line"><span class="function"><span class="title">msg</span><span class="params">(Format, Args)</span> -&gt;</span></span><br><span class="line">    ?MSG(Format, Args).</span><br><span class="line"><span class="function"><span class="title">msg</span><span class="params">(Attr, Format, Args)</span> -&gt;</span></span><br><span class="line">    ?MSG(Attr, Format, Args).</span><br></pre></td></tr></tbody></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/erlang/" rel="tag"># erlang</a>
+              <a href="/tags/log/" rel="tag"># log</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/15/%E9%82%A3%E4%BA%9B%E6%AD%8C/" rel="prev" title="那些歌">
+                  <i class="fa fa-chevron-left"></i> 那些歌
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/15/todo/" rel="next" title="todo">
+                  todo <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+<script src="/js/comments.js"></script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jostar</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">7k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7 分钟</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
