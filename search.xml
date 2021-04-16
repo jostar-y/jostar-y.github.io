@@ -22,30 +22,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title></title>
-    <url>/2021/04/16/lager_e/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>lager 是 erlang 和 exlir 的一个日志库。</p>
-<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul>
-<li>细粒度日志级别（debug, info, notice, warning, error, critical, alert, emergency）</li>
-<li>记录器使用 parse transform 进行转换，以允许捕获 Module/Function/Line/Pid 信息</li>
-<li>当没有处理程序正在使用日志级别时 (例如 debug)，没有事件被发送到日志处理器</li>
-<li>支持多个后端，包括控制台和文件</li>
-<li>支持多个 sink 扩展</li>
-<li>将常见的 OTP 错误消息改写为更易读的消息</li>
-<li>支持在编译时处理记录，并可完整输出</li>
-<li>在面对较大或较多的日志消息时，不会出现节点内存不足的情况</li>
-<li>绕过日志大小截断的可选特性 (“不安全”)</li>
-<li> 支持内部时间和日期旋转，以及外部旋转工具</li>
-<li> syslog 类型的日志标签</li>
-<li>彩色的终端输出</li>
-<li>支持 map</li>
-<li> 可选的负载削减设置高水位线，杀死 (并重新启动) 一个 sink 后，可配置冷却定时器</li>
-</ul>
-<p>lager:info (“My state is ~p”, [lager:pr (State, ?MODULE)])    ==&gt; #state {}         %% record 输出</p>
-<p> lager:info (“yrtest My state is ~p”, [State]) ==&gt; {stae}                                         %% tuple 输出</p>
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4>]]></content>
-  </entry>
-  <entry>
     <title>rebar</title>
     <url>/2021/04/15/rebar/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
@@ -53,10 +29,39 @@
   <entry>
     <title>lager</title>
     <url>/2021/04/15/lager/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>rebar.config</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>lager 是 erlang 和 exlir 的一个日志库。</p>
+<h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul>
+<li><p>细粒度日志级别（debug, info, notice, warning, error, critical, alert, emergency）</p>
+</li>
+<li><p>记录器使用 parse transform 进行转换，以允许捕获 Module/Function/Line/Pid 信息</p>
+</li>
+<li><p>当没有处理程序正在使用日志级别时 (例如 debug)，没有事件被发送到日志处理器</p>
+</li>
+<li><p>支持多个后端，包括控制台和文件</p>
+</li>
+<li><p>支持多个 sink 扩展</p>
+  <span id="more"></span></li>
+<li><p>将常见的 OTP 错误消息改写为更易读的消息</p>
+</li>
+<li><p>支持在编译时处理记录，并可完整输出</p>
+</li>
+<li><p>在面对较大或较多的日志消息时，不会出现节点内存不足的情况</p>
+</li>
+<li><p>绕过日志大小截断的可选特性 (“不安全”)</p>
+</li>
+<li><p>支持内部时间和日期旋转，以及外部旋转工具</p>
+</li>
+<li><p>syslog 类型的日志标签</p>
+</li>
+<li><p>彩色的终端输出</p>
+</li>
+<li><p>支持 map</p>
+</li>
+<li><p>可选的负载削减设置高水位线，杀死 (并重新启动) 一个 sink 后，可配置冷却定时器</p>
+</li>
+</ul>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>rebar.config</p>
 <figure class="highlight erlang"><table><tbody><tr><td class="code"><pre><span class="line">{erl_opts,[</span><br><span class="line">    ...</span><br><span class="line">    {parse_transform, lager_transform},     </span><br><span class="line">    {lager_truncation_size, <span class="number">1024</span>},          <span class="comment">% 限制单条日志最大尺寸</span></span><br><span class="line">    {lager_extra_sinks, [msg]},             <span class="comment">% 扩展日志</span></span><br><span class="line">    ...</span><br><span class="line">]}.</span><br><span class="line"></span><br><span class="line">{deps,[</span><br><span class="line">       {lager, <span class="string">"3.9.1"</span>}</span><br><span class="line">      ]}</span><br></pre></td></tr></tbody></table></figure>
-
-<span id="more"></span>
 
 <p>sys.config</p>
 <figure class="highlight erlang"><table><tbody><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    {lager_test, []},</span><br><span class="line">    {lager, [</span><br><span class="line"></span><br><span class="line">        {log_root, <span class="string">"./log"</span>},                <span class="comment">% 日志根目录</span></span><br><span class="line"></span><br><span class="line">        {crash_log, <span class="string">"crash.log"</span>},           <span class="comment">% 设置后当系统发生严重崩溃时，会将日志记录在此文件中</span></span><br><span class="line">        {crash_log_msg_size, <span class="number">65536</span>},        <span class="comment">% 崩溃日志的消息大小的限制</span></span><br><span class="line">        {crash_log_size, <span class="number">10485760</span>},         <span class="comment">% 崩溃日志的文件大小限制</span></span><br><span class="line">        {crash_log_data, <span class="string">"$D0"</span>},            <span class="comment">% 崩溃日志的切割时间</span></span><br><span class="line">        {crash_log_count, <span class="number">5</span>},               <span class="comment">% 崩溃日志的切割数量</span></span><br><span class="line"></span><br><span class="line">        {reverse_pretty_stacktrace, true},      <span class="comment">% 翻转堆栈输出顺序</span></span><br><span class="line">        {error_logger_redirect, true},          <span class="comment">% 是否重定向error_logger消息</span></span><br><span class="line">        {error_logger_hwm, <span class="number">50</span>},                 <span class="comment">% error_logger消息的高水位线，超过将被丢弃 如果想要缓存一定数量消息，则开启下面的属性</span></span><br><span class="line">        <span class="comment">% {error_logger_flush_queue, true},       % 开启丢弃消息 默认：true</span></span><br><span class="line">        <span class="comment">% {error_logger_flush_threshold, 1000},   % 当消息超过高水位线时，并且超过此上线时，超过的消息将被丢弃 默认：0</span></span><br><span class="line"></span><br><span class="line">        {async_threshold, <span class="number">20</span>},              <span class="comment">% 当日志消息积累到一定数量时切换到同步模式（反压）设置为undefined禁用    可以单独在sink中定义</span></span><br><span class="line">        {async_threshold_window, <span class="number">5</span>},        <span class="comment">% 档日志消息减少到一定数量时切换到异步模式  比如这里就是20 - 5 = 15 当消息少于15时切回异步  可以单独在sink中定义</span></span><br><span class="line">        <span class="comment">% {flush_queue, true}                 % 功能与 error_logger_flush_queue 一样 可以单独在sink中定义 默认：true</span></span><br><span class="line">        <span class="comment">% {flush_threshold, 1000}             % 功能与 error_logger_flush_threshold 一样 可以单独在sink中定义 默认：0</span></span><br><span class="line"></span><br><span class="line">        {handlers, [</span><br><span class="line">            <span class="comment">%% lager_console_backend 可设置参数</span></span><br><span class="line">            <span class="comment">%% level 日志级别（需要定义）</span></span><br><span class="line">            <span class="comment">%% formatter 格式化模块 默认：lager_default_formatter</span></span><br><span class="line">            <span class="comment">%% formatter_config 日志格式，默认：[time, " ", color, "[", severity,"] ", message]</span></span><br><span class="line">            <span class="comment">%% user_stderr 是否使用stderr 默认：false</span></span><br><span class="line">            <span class="comment">%% group_leader 指定要输出的io_server 默认：false 使用user进程作为io_server</span></span><br><span class="line">            {lager_console_backend, [</span><br><span class="line">                {level, debug},</span><br><span class="line">                {formatter_config, [time, <span class="string">" "</span>, <span class="string">"["</span>, serverity, <span class="string">"]"</span>, module, <span class="string">":"</span>, function, <span class="string">" "</span>, message, <span class="string">"\n"</span>]}</span><br><span class="line">            ]},</span><br><span class="line"></span><br><span class="line">            <span class="comment">%% lager_file_backend 可设置参数</span></span><br><span class="line">            <span class="comment">%% file 日志文件名（需要定义）</span></span><br><span class="line">            <span class="comment">%% level 日志级别 默认：&gt;=info</span></span><br><span class="line">            <span class="comment">%% size 日志文件大小 默认：10MB</span></span><br><span class="line">            <span class="comment">%% date 日志切割时间 默认：$D0 每日0点</span></span><br><span class="line">            <span class="comment">%% count 日志切分数量 默认：5</span></span><br><span class="line">            <span class="comment">%% rotation 日志切割处理模块 默认：lager_rotator_default</span></span><br><span class="line">            <span class="comment">%% formatter 格式化模块 默认：lager_default_formatter</span></span><br><span class="line">            <span class="comment">%% formatter_config 日志格式（需要定义）</span></span><br><span class="line">            <span class="comment">%% sync_on 立即同步日志级别 默认：error</span></span><br><span class="line">            <span class="comment">%% sync_interval 日志写文件间隔 默认：1000毫秒</span></span><br><span class="line">            <span class="comment">%% sync_size 日志写文件大小 默认：64KB</span></span><br><span class="line">            {lager_file_backend, [</span><br><span class="line">                {file, <span class="string">"error.log"</span>},</span><br><span class="line">                {level, '&gt;=error'},</span><br><span class="line">                {formatter_config, [time, <span class="string">" "</span>, <span class="string">"["</span>, serverity, <span class="string">"]"</span>, module, <span class="string">":"</span>, function, <span class="string">" "</span>, message, <span class="string">"\n"</span>]}</span><br><span class="line">            ]},</span><br><span class="line">            {lager_file_backend, [</span><br><span class="line">                {file, <span class="string">"info.log"</span>},</span><br><span class="line">                {level, '&lt;=warning'},</span><br><span class="line">                {formatter_config, [time, <span class="string">" "</span>, <span class="string">"["</span>, serverity, <span class="string">"]"</span>, module, <span class="string">":"</span>, function, <span class="string">" "</span>, message, <span class="string">"\n"</span>]}</span><br><span class="line">            ]}</span><br><span class="line">        ]},</span><br><span class="line"></span><br><span class="line">        <span class="comment">% {killer_hwm, 1000},               % 如果消息高水位线超过此值 则删掉相关接收器进程 默认：undefined</span></span><br><span class="line">        <span class="comment">% {killer_reinstall_after, 5000}    % 达到此时间后重启此接收器进程    默认：5000毫秒</span></span><br><span class="line">        {extra_sinks, [</span><br><span class="line">            {msg_lager_event, [</span><br><span class="line">                {handlers, [</span><br><span class="line">                    {lager_file_backend, [</span><br><span class="line">                        {file, <span class="string">"msg.log"</span>},</span><br><span class="line">                        {level, '=info'},</span><br><span class="line">                        {formatter_config, [time, <span class="string">" "</span>, <span class="string">"["</span>, serverity, <span class="string">"]"</span>, module, <span class="string">":"</span>, function, <span class="string">" "</span>, message, <span class="string">"\n"</span>]}</span><br><span class="line">                    ]}</span><br><span class="line">                ]}</span><br><span class="line">            ]}</span><br><span class="line">        ]}</span><br><span class="line">    ]}</span><br><span class="line">].</span><br></pre></td></tr></tbody></table></figure>
@@ -135,7 +140,7 @@
     <title>那些歌</title>
     <url>/2021/04/15/%E9%82%A3%E4%BA%9B%E6%AD%8C/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h5 id="x1f442-网易云"><a href="#x1f442-网易云" class="headerlink" title="👂网易云"></a><span class="github-emoji" alias="ear" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f442.png?v8">👂</span>网易云</h5>
-    <div id="aplayer-foITjChP" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="6647556685" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
+    <div id="aplayer-alfPOgum" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="6647556685" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
 
 <p>凭什么敢挡在最前面？</p>
 ]]></content>
