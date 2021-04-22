@@ -1,63 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>todo</title>
-    <url>/2021/04/15/todo/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Todo…</p>
-<span id="more"></span>
-
-<h4 id="Erlang"><a href="#Erlang" class="headerlink" title="Erlang"></a>Erlang</h4><p>gc</p>
-<p>rika</p>
-<p>hot_reload</p>
-<p>cluster</p>
-<p>node</p>
-<p>io:user</p>
-<p>binary</p>
-<h4 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h4><h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><p>主从</p>
-<h4 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h4><p>tcp</p>
-<p>udp</p>
-<p>http</p>
-<p>mqtt</p>
-<p>coap</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>安装 erlang</title>
-    <url>/2021/04/22/%E5%AE%89%E8%A3%85erlang/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p><a href="http://erlang.org/download/">下载链接</a></p>
-<p>分为 win32 和 win64 两类，选择合适的版本下载安装即可。</p>
-<h4 id="CentOS7"><a href="#CentOS7" class="headerlink" title="CentOS7"></a>CentOS7</h4><span id="more"></span>
-
-<ul>
-<li>安装 perl</li>
-</ul>
-<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">yum -y install perl-devel.x86_64</span><br></pre></td></tr></tbody></table></figure>
-
-<ul>
-<li><p>安装依赖模块</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">yum -y install make gcc gcc-c++ kernel-devel m4 ncurses-devel openssl-devel </span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>下载 erlang 源码压缩包</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">wget http://erlang.org/download/otp_src_23.3.tar.gz </span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>解压 otp_src_23.3.tar.gz </p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">tar -vxf otp_src_23.3.tar.gz </span><br></pre></td></tr></tbody></table></figure></li>
-<li><p>设置安装路径并安装</p>
-<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">mkdir /root/erlang_23_3</span><br><span class="line">cd otp_src_23.3</span><br><span class="line">./configure --prefix=/root/erlang_23_3</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></tbody></table></figure></li>
-</ul>
-<h4 id="Debian-10"><a href="#Debian-10" class="headerlink" title="Debian 10"></a>Debian 10</h4><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb</span><br><span class="line">sudo dpkg -i erlang-solutions_2.0_all.deb</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install erlang=1:23.3.1-1</span><br></pre></td></tr></tbody></table></figure>
-
-<h4 id="Ubuntu-20-04-LTS"><a href="#Ubuntu-20-04-LTS" class="headerlink" title="Ubuntu 20.04 LTS"></a>Ubuntu 20.04 LTS</h4><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -</span><br><span class="line">echo "deb https://packages.erlang-solutions.com/ubuntu focal contrib" | sudo tee /etc/apt/sources.list.d/erlang-solution.list</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install erlang=1:23.3.1-1</span><br></pre></td></tr></tbody></table></figure>
-
-<h4 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h4><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">brew install erlang</span><br></pre></td></tr></tbody></table></figure>]]></content>
-      <tags>
-        <tag>erlang</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rebar</title>
-    <url>/2021/04/15/rebar/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
-  </entry>
-  <entry>
     <title>lager</title>
     <url>/2021/04/15/lager/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>lager 是 erlang 和 exlir 的一个日志库。</p>
@@ -168,21 +111,78 @@
       </tags>
   </entry>
   <entry>
-    <title>那些话</title>
-    <url>/2021/04/15/%E9%82%A3%E4%BA%9B%E8%AF%9D/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>凭什么挡在最前面？</p>
-<p>勇气、忠诚、体魄、学识</p>
+    <title>rebar</title>
+    <url>/2021/04/15/rebar/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
+  </entry>
+  <entry>
+    <title>todo</title>
+    <url>/2021/04/15/todo/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Todo…</p>
+<span id="more"></span>
+
+<h4 id="Erlang"><a href="#Erlang" class="headerlink" title="Erlang"></a>Erlang</h4><p>gc</p>
+<p>rika</p>
+<p>hot_reload</p>
+<p>cluster</p>
+<p>node</p>
+<p>io:user</p>
+<p>binary</p>
+<h4 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h4><h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><p>主从</p>
+<h4 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h4><p>tcp</p>
+<p>udp</p>
+<p>http</p>
+<p>mqtt</p>
+<p>coap</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>安装 erlang</title>
+    <url>/2021/04/22/%E5%AE%89%E8%A3%85erlang/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><p><a href="http://erlang.org/download/">下载链接</a></p>
+<p>分为 win32 和 win64 两类，选择合适的版本下载安装即可。</p>
+<h4 id="CentOS7"><a href="#CentOS7" class="headerlink" title="CentOS7"></a>CentOS7</h4><span id="more"></span>
+
+<ul>
+<li>安装 perl</li>
+</ul>
+<figure class="highlight sh"><table><tbody><tr><td class="code"><pre><span class="line">yum -y install perl-devel.x86_64</span><br></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li><p>安装依赖模块</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">yum -y install make gcc gcc-c++ kernel-devel m4 ncurses-devel openssl-devel </span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>下载 erlang 源码压缩包</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">wget http://erlang.org/download/otp_src_23.3.tar.gz </span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>解压 otp_src_23.3.tar.gz </p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">tar -vxf otp_src_23.3.tar.gz </span><br></pre></td></tr></tbody></table></figure></li>
+<li><p>设置安装路径并安装</p>
+<figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">mkdir /root/erlang_23_3</span><br><span class="line">cd otp_src_23.3</span><br><span class="line">./configure --prefix=/root/erlang_23_3</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h4 id="Debian-10"><a href="#Debian-10" class="headerlink" title="Debian 10"></a>Debian 10</h4><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">wget https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb</span><br><span class="line">sudo dpkg -i erlang-solutions_2.0_all.deb</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install erlang=1:23.3.1-1</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Ubuntu-20-04-LTS"><a href="#Ubuntu-20-04-LTS" class="headerlink" title="Ubuntu 20.04 LTS"></a>Ubuntu 20.04 LTS</h4><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">wget -O- https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc | sudo apt-key add -</span><br><span class="line">echo "deb https://packages.erlang-solutions.com/ubuntu focal contrib" | sudo tee /etc/apt/sources.list.d/erlang-solution.list</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt install erlang=1:23.3.1-1</span><br></pre></td></tr></tbody></table></figure>
+
+<h4 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h4><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line">brew install erlang</span><br></pre></td></tr></tbody></table></figure>]]></content>
       <tags>
-        <tag>essay</tag>
+        <tag>erlang</tag>
       </tags>
   </entry>
   <entry>
     <title>那些歌</title>
     <url>/2021/04/15/%E9%82%A3%E4%BA%9B%E6%AD%8C/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h5 id="x1f442-网易云"><a href="#x1f442-网易云" class="headerlink" title="👂网易云"></a><span class="github-emoji" alias="ear" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f442.png?v8">👂</span>网易云</h5>
-    <div id="aplayer-NQjjIvnx" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="6647556685" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
+    <div id="aplayer-zuCPvsRZ" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="6647556685" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
 
+]]></content>
+      <tags>
+        <tag>essay</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>那些话</title>
+    <url>/2021/04/15/%E9%82%A3%E4%BA%9B%E8%AF%9D/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>凭什么挡在最前面？</p>
+<p>勇气、忠诚、体魄、学识</p>
 ]]></content>
       <tags>
         <tag>essay</tag>
