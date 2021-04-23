@@ -60,7 +60,7 @@
   <entry>
     <title>lager</title>
     <url>/2021/04/15/lager/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>Lager 是 erlang 和 exlir 的一个日志库。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>Lager 是 erlang 的一个日志库。</p>
 <h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul>
 <li><p>细粒度日志级别（<code>debug, info, notice, warning, error, critical, alert, emergency</code>）</p>
 </li>
