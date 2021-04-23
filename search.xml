@@ -22,8 +22,19 @@
 ]]></content>
   </entry>
   <entry>
-    <title>安装 erlang</title>
-    <url>/2021/04/22/%E5%AE%89%E8%A3%85erlang/</url>
+    <title>Erlang_GC</title>
+    <url>/2021/04/23/Erlang-GC/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>erlang gc 采取分代策略，新一代和老一代。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Rika</title>
+    <url>/2021/04/23/Rika/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script>]]></content>
+  </entry>
+  <entry>
+    <title>安装 Erlang</title>
+    <url>/2021/04/22/%E5%AE%89%E8%A3%85Erlang/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h2><p><a href="http://erlang.org/download/">下载链接</a></p>
 <p>分为 win32 和 win64 两类，选择合适的版本下载安装即可。</p>
 <h2 id="CentOS7"><a href="#CentOS7" class="headerlink" title="CentOS7"></a>CentOS7</h2><span id="more"></span>
@@ -53,11 +64,12 @@
       </tags>
   </entry>
   <entry>
-    <title>rebar</title>
-    <url>/2021/04/15/rebar/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/erlang/rebar3.git</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> rebar3</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./bootstrap</span></span><br></pre></td></tr></tbody></table></figure>
+    <title>Rebar3</title>
+    <url>/2021/04/15/Rebar3/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p><code>Rebar3</code> 是 <code>Erlang</code> 的标准构建工具。遵循 <code>otp</code> 规范，可使用 <code>hex</code> 源进行依赖管理，支持发布多个包。</p>
+<h2 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h2><figure class="highlight shell"><table><tbody><tr><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> https://github.com/erlang/rebar3.git</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> rebar3</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./bootstrap</span></span><br></pre></td></tr></tbody></table></figure>
 
-
+<span id="more"></span>
 
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><figure class="highlight erlang"><table><tbody><tr><td class="code"><pre><span class="line"><span class="comment">%% -*- erlang -*-</span></span><br><span class="line">{minimum_otp_vsn, <span class="string">"23.0"</span>}.</span><br><span class="line"></span><br><span class="line">{erl_opts, [</span><br><span class="line">    ...</span><br><span class="line">    {parse_transform, lager_transform},</span><br><span class="line">    {i, <span class="string">"include"</span>},</span><br><span class="line">    {src_dirs, [<span class="string">"src"</span>]},</span><br><span class="line">    {platform_define, <span class="string">"^[0-9]+"</span>, namespaced_types},</span><br><span class="line">    nowarn_unused_vars,</span><br><span class="line">    nowarn_deprecated_function,</span><br><span class="line">    nowarn_export_all,</span><br><span class="line">    {no_debug_info},</span><br><span class="line">    {hipe, native},</span><br><span class="line">    {hipe, [o3]},</span><br><span class="line">    {d, dbg_tester},</span><br><span class="line">    ...</span><br><span class="line">]}.</span><br><span class="line"></span><br><span class="line">{deps, [</span><br><span class="line">       <span class="comment">%% 包依赖</span></span><br><span class="line">      rebar,</span><br><span class="line">      {rebar,<span class="string">"1.0.0"</span>},</span><br><span class="line">      {rebar, {pkg, rebar_fork}}, <span class="comment">% rebar app under a different pkg name</span></span><br><span class="line">      {rebar, <span class="string">"1.0.0"</span>, {pkg, rebar_fork}},</span><br><span class="line">      <span class="comment">%% 源码依赖</span></span><br><span class="line">      {rebar, {git, <span class="string">"git://github.com/erlang/rebar3.git"</span>}},</span><br><span class="line">      {rebar, {git, <span class="string">"http://github.com/erlang/rebar3.git"</span>}},</span><br><span class="line">      {rebar, {git, <span class="string">"https://github.com/erlang/rebar3.git"</span>}},</span><br><span class="line">      {rebar, {git, <span class="string">"git@github.com:erlang/rebar3.git"</span>}},</span><br><span class="line">      {rebar, {hg, <span class="string">"https://othersite.com/erlang/rebar3"</span>}},</span><br><span class="line">      {rebar, {git, <span class="string">"git://github.com/erlang/rebar3.git"</span>, {ref, <span class="string">"aef728"</span>}}},</span><br><span class="line">      {rebar, {git, <span class="string">"git://github.com/erlang/rebar3.git"</span>, {branch, <span class="string">"master"</span>}}},</span><br><span class="line">      {rebar, {git, <span class="string">"git://github.com/erlang/rebar3.git"</span>, {tag, <span class="string">"3.0.0"</span>}}}</span><br><span class="line">]}.</span><br><span class="line"></span><br><span class="line">{rebar_packages_cdn, <span class="string">"https://hexpm.upyun.com"</span>}. <span class="comment">%% hex源</span></span><br><span class="line"></span><br><span class="line">{relx, [{release, {server, <span class="string">"0.1.0"</span>},</span><br><span class="line">    [</span><br><span class="line">     	...</span><br><span class="line">        sasl,</span><br><span class="line">        observer, wx, runtime_tools, <span class="comment">%% observer need</span></span><br><span class="line">        lager,</span><br><span class="line">        cowboy,</span><br><span class="line">        uuid,</span><br><span class="line">        emysql,</span><br><span class="line">        ...</span><br><span class="line">    ]},</span><br><span class="line"></span><br><span class="line">    {mode, dev},</span><br><span class="line">    {include_erts, true},</span><br><span class="line">    {include_src, false}</span><br><span class="line">    <span class="comment">%% automatically picked up if the files</span></span><br><span class="line">    <span class="comment">%% exist but can be set manually, which</span></span><br><span class="line">    <span class="comment">%% is required if the names aren't exactly</span></span><br><span class="line">    <span class="comment">%% sys.config and vm.args</span></span><br><span class="line">    {sys_config, <span class="string">"./config/sys.config"</span>},</span><br><span class="line">    {vm_args, <span class="string">"./config/vm.args"</span>}</span><br><span class="line"></span><br><span class="line">    <span class="comment">%% the .src form of the configuration files do</span></span><br><span class="line">    <span class="comment">%% not require setting RELX_REPLACE_OS_VARS</span></span><br><span class="line">    <span class="comment">%% {sys_config_src, "./config/sys.config.src"},</span></span><br><span class="line">    <span class="comment">%% {vm_args_src, "./config/vm.args.src"}</span></span><br><span class="line">]}.</span><br><span class="line"></span><br><span class="line">{profiles, [{prod, [{relx,</span><br><span class="line">    [<span class="comment">%% prod is the default mode when prod</span></span><br><span class="line">        <span class="comment">%% profile is used, so does not have</span></span><br><span class="line">        <span class="comment">%% to be explicitly included like this</span></span><br><span class="line">        {mode, prod}</span><br><span class="line">        {dev_mode, false},</span><br><span class="line">		{include_erts, true}</span><br><span class="line">        <span class="comment">%% use minimal mode to exclude ERTS</span></span><br><span class="line">        <span class="comment">%% {mode, minimal}</span></span><br><span class="line">    ]</span><br><span class="line">}]}]}.</span><br></pre></td></tr></tbody></table></figure>
 
@@ -111,7 +123,7 @@
 </tr>
 <tr>
 <td align="center"> tree</td>
-<td align="center"> 打印项目树</td>
+<td align="center"> 查看依赖关系</td>
 </tr>
 <tr>
 <td align="center"> update</td>
@@ -134,8 +146,8 @@
       </tags>
   </entry>
   <entry>
-    <title>lager</title>
-    <url>/2021/04/15/lager/</url>
+    <title>Lager</title>
+    <url>/2021/04/15/Lager/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Lager 是 erlang 的一个日志库。</p>
 <h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
 <li><p>细粒度日志级别（<code>debug, info, notice, warning, error, critical, alert, emergency</code>）</p>
