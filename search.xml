@@ -134,7 +134,7 @@
   </entry>
   <entry>
     <title>Lager</title>
-    <url>/2021/04/15/Lager%E4%BD%BF%E7%94%A8/</url>
+    <url>/2021/04/15/Lager/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Lager 是 erlang 的一个日志库。</p>
 <h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
 <li><p>细粒度日志级别（<code>debug, info, notice, warning, error, critical, alert, emergency</code>）</p>
@@ -352,7 +352,7 @@
     <title>那些歌</title>
     <url>/2021/04/15/%E9%82%A3%E4%BA%9B%E6%AD%8C/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h5 id="x1f442-网易云"><a href="#x1f442-网易云" class="headerlink" title="👂网易云"></a><span class="github-emoji" alias="ear" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f442.png?v8">👂</span>网易云</h5>
-    <div id="aplayer-DgTLAgFi" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="6647556685" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
+    <div id="aplayer-MbxIHAUZ" class="aplayer aplayer-tag-marker meting-tag-marker" data-id="6647556685" data-server="netease" data-type="playlist" data-mode="circulation" data-autoplay="false" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"></div>
 
 ]]></content>
       <tags>
