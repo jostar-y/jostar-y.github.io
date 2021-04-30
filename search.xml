@@ -1,51 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>todo</title>
-    <url>/2021/04/15/todo/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>Todo…</p>
-<span id="more"></span>
-
-<h4 id="Erlang"><a href="#Erlang" class="headerlink" title="Erlang"></a>Erlang</h4><p>gc</p>
-<p>rika</p>
-<p>hot_reload</p>
-<p>cluster</p>
-<p>node</p>
-<p>io:user</p>
-<p>binary</p>
-<h4 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h4><h4 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h4><p>主从</p>
-<h4 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h4><p>tcp</p>
-<p>udp</p>
-<p>http</p>
-<p>mqtt</p>
-<p>coap</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Erlang 知识点索引</title>
     <url>/2021/04/30/Erlang%E7%9F%A5%E8%AF%86%E7%82%B9%E7%B4%A2%E5%BC%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h4 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h4><p><a href="https://hitdavid.github.io/theBeamBook/">Erlang 运行时系统</a></p>
 <h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p><a href="https://blog.csdn.net/zuimrs/article/details/103251636">Erlang 常用数据结构实现</a></p>
 <p><a href="http://erlang.org/doc/efficiency_guide/advanced.html">Efficiency Guide - Adcanced</a></p>
+<span id="more"></span>
+
 <h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p><a href="http://www.erlang.se/doc/programming_rules.shtml#HDR42">规范</a></p>
 <h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2>]]></content>
       <tags>
         <tag>erlang</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Erlang_GC</title>
-    <url>/2021/04/23/Erlang-GC/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>erlang gc 采取分代策略，新一代和老一代。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Rika</title>
-    <url>/2021/04/23/Rika/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>rika 策略，分布式存储，环节点</p>
-]]></content>
-      <tags>
-        <tag>rika</tag>
       </tags>
   </entry>
   <entry>
@@ -368,6 +334,8 @@
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="\assets\js\Meting.min.js"></script><p>只做狠事，不说狠话。</p>
 <p>口不密身死，身不密家破。</p>
 <p>言不轻出，诺不轻许，行为慎始。</p>
+<span id="more"></span>
+
 <p>个人时间利用好，你才是生活。</p>
 <p>凭什么挡在最前面？</p>
 <p>勇气、忠诚、体魄、学识。</p>
